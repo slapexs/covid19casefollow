@@ -6,6 +6,7 @@ include_once('./condb.php');
 // Variables
 $smid = $_SESSION['m_id'];
 
+// Checklogin
 if (isset($_POST['checklogin'])) {
     $data = $_POST['checklogin'];
     $res_msg = "";

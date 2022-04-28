@@ -15,7 +15,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                        username
+                        <?= (isset($smid) ?  $racc['m_username'] : ''); ?>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#"><i class="ri-user-line"></i> แก้ไขโปรไฟล์</a>

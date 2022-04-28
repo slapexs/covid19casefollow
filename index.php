@@ -1,6 +1,6 @@
 <?php
 include_once('./backend/function.php');
-
+include_once('./service/getdata.php');
 
 // Check sesstion login
 if (!isset($_SESSION['m_id'])) {
