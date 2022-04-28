@@ -33,15 +33,18 @@ if (!isset($_SESSION['m_id'])) {
 
     <div class="container">
         <?php
-    switch ($page) {
-        case 'profile':
-            include_once('./pages/profile.php');
-            break;
-        
-        default:
-            # code...
-            break;
-    }
+        switch ($page) {
+            case 'profile':
+                include_once('./pages/profile.php');
+                break;
+            case 'password';
+                include_once('./pages/changepassword.php');
+                break;
+
+            default:
+                # code...
+                break;
+        }
         ?>
     </div>
 
@@ -51,6 +54,8 @@ if (!isset($_SESSION['m_id'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
     <!-- Profile js -->
     <script src="./assets/js/profile.js"></script>
+    <!-- Password -->
+    <script src="./assets/js/password.js"></script>
 </body>
 
 </html>

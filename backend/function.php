@@ -42,7 +42,7 @@ if (isset($_POST['checklogin'])) {
 }
 
 // Edit profile
-if (isset($_POST['editprofile'])){
+if (isset($_POST['editprofile'])) {
     $data = $_POST['editprofile'];
 
     $update = "UPDATE `members` SET `m_fname` = :fname, `m_lname` = :lname WHERE `m_id` = :mid";
@@ -51,9 +51,45 @@ if (isset($_POST['editprofile'])){
     $qupdate->bindParam('fname', $data[1]);
     $qupdate->bindParam('lname', $data[2]);
     $qupdate->execute();
-    if ($qupdate){
+    if ($qupdate) {
         $res_msg = 'updated';
     }
+    $response = ['msg' => $res_msg];
+    echo json_encode($response);
+}
+
+// Change password
+if (isset($_POST['changepassword'])) {
+    $data = $_POST['changepassword'];
+    $user = "SELECT * FROM `members` WHERE `m_id` = :mid";
+    $quser = $conn->prepare($user);
+    $quser->bindParam(':mid', $data[0]);
+    $quser->execute();
+    $ruser = $quser->fetch();
+    $curpassword = $ruser['m_password'];
+
+    // Check current password
+    if (password_verify($data[1], $curpassword)) {
+
+        // Check new password match
+        if ($data[2] == $data[3]) {
+            // Change password
+            $hashpwd = password_hash($data[2], PASSWORD_DEFAULT);
+            $update = "UPDATE `members` SET `m_password` = :newpassword WHERE `m_id` = :mid";
+            $qupdate = $conn->prepare($update);
+            $qupdate->bindParam(':mid', $data[0]);
+            $qupdate->bindParam(':newpassword', $hashpwd);
+            $qupdate->execute();
+            if ($qupdate) {
+                $res_msg = 'pwd_changed';
+            }
+        } else {
+            $res_msg = 'newpwd_notmatch';
+        }
+    } else {
+        $res_msg = 'curpwd_invalid';
+    }
+
     $response = ['msg' => $res_msg];
     echo json_encode($response);
 }
