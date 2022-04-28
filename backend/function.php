@@ -5,6 +5,8 @@ include_once('./condb.php');
 
 // Variables
 $smid = $_SESSION['m_id'];
+$page = $_GET['page'];
+$memberroles = ['อสม.', 'แพทย์', 'แอดมิน'];
 
 // Checklogin
 if (isset($_POST['checklogin'])) {
@@ -35,6 +37,23 @@ if (isset($_POST['checklogin'])) {
         $res_msg = 'username_not_found';
     }
 
+    $response = ['msg' => $res_msg];
+    echo json_encode($response);
+}
+
+// Edit profile
+if (isset($_POST['editprofile'])){
+    $data = $_POST['editprofile'];
+
+    $update = "UPDATE `members` SET `m_fname` = :fname, `m_lname` = :lname WHERE `m_id` = :mid";
+    $qupdate = $conn->prepare($update);
+    $qupdate->bindParam('mid', $data[0]);
+    $qupdate->bindParam('fname', $data[1]);
+    $qupdate->bindParam('lname', $data[2]);
+    $qupdate->execute();
+    if ($qupdate){
+        $res_msg = 'updated';
+    }
     $response = ['msg' => $res_msg];
     echo json_encode($response);
 }
