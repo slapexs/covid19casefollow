@@ -21,7 +21,7 @@
                         <a class="dropdown-item" href="#"><i class="ri-user-line"></i> แก้ไขโปรไฟล์</a>
                         <a class="dropdown-item" href="#"><i class="ri-lock-password-line"></i> แก้ไขรหัสผ่าน</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#"><i class="ri-logout-box-line"></i> ออกจากระบบ</a>
+                        <a class="dropdown-item" href="./logout" onclick="return confirm('ออกจากระบบ ?')"><i class="ri-logout-box-line"></i> ออกจากระบบ</a>
                     </div>
                 </li>
             </ul>
