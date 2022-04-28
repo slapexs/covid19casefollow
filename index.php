@@ -1,3 +1,13 @@
+<?php
+include_once('./backend/function.php');
+
+
+// Check sesstion login
+if (!isset($_SESSION['m_id'])) {
+    header('location: ./login');
+}
+?>
+
 <!doctype html>
 <html lang="en">
 

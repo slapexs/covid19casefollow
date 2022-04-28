@@ -1,7 +1,10 @@
 <?php
-session_start();
 error_reporting(0);
+session_start();
 include_once('./condb.php');
+
+// Variables
+$smid = $_SESSION['m_id'];
 
 if (isset($_POST['checklogin'])) {
     $data = $_POST['checklogin'];
