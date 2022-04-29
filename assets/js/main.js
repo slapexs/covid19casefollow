@@ -48,3 +48,38 @@ function deluser(mid, smid) {
     }
   }
 }
+
+// Add user
+$('#formadduser').submit((e) => {
+  e.preventDefault();
+  const form_data = [
+    $('#m_username').val(),
+    $('#m_password').val(),
+    $('#m_fname').val(),
+    $('#m_lname').val(),
+    $('#m_role').val(),
+  ];
+
+  $.ajax({
+    url: './backend/function.php',
+    type: 'post',
+    data: { adduser: form_data },
+    dataType: 'json',
+    success: (res) => {
+      if (res.msg == 'inserted') {
+        alert('เพิ่มบัญชีผู้ใช้เรียบร้อย');
+        window.location.reload();
+      } else if (res.msg == 'not_insert') {
+        alert('ผิดพลาด! เพิ่มบัญชีผู้ใช้ได้');
+        window.location.reload();
+      } else if (res.msg == 'username_invalid') {
+        alert('ผิดพลาด! ไม่สามารถใช้ชื่อบัญชีผู้ใช้ซ้ำได้');
+        window.location.reload();
+      } else {
+        alert('ผิดพลาด! เพิ่มบัญชีผู้ใช้ได้');
+        window.location.reload();
+      }
+    },
+    error: (err) => console.log(err),
+  });
+});

@@ -96,16 +96,47 @@ if (isset($_POST['changepassword'])) {
 }
 
 // Delete user
-if (isset($_POST['deluser'])){
+if (isset($_POST['deluser'])) {
     $delmid = $_POST['deluser'];
     $del = "DELETE FROM `members` WHERE `m_id` = :delmid";
     $qdel = $conn->prepare($del);
     $qdel->bindParam(':delmid', $delmid);
     $qdel->execute();
-    if ($qdel){
+    if ($qdel) {
         $res_msg = 'deleted';
-    }else{
+    } else {
         $res_msg = 'note_delete';
+    }
+
+    $response = ['msg' => $res_msg];
+    echo json_encode($response);
+}
+
+// Add user
+if (isset($_POST['adduser'])) {
+    $data = $_POST['adduser'];
+    // Check username
+    $finduser = "SELECT * FROM `members` WHERE `m_username` = :username";
+    $qfinduser = $conn->prepare($finduser);
+    $qfinduser->bindParam(':username', $data[0]);
+    $qfinduser->execute();
+    $cfinduser = $qfinduser->rowCount();
+    if ($cfinduser < 1) {
+        $ins = "INSERT INTO `members` (`m_username`, `m_password`, `m_fname`, `m_lname`, `m_role`) VALUES (:username, :hashpassword, :fname, :lname, :mrole)";
+        $qins = $conn->prepare($ins);
+        $qins->bindParam(':username', $data[0]);
+        $qins->bindParam(':hashpassword', password_verify($data[1], PASSWORD_DEFAULT));
+        $qins->bindParam(':fname', $data[2]);
+        $qins->bindParam(':lname', $data[3]);
+        $qins->bindParam(':mrole', $data[4]);
+        $qins->execute();
+        if ($qins) {
+            $res_msg = 'inserted';
+        } else {
+            $res_msg = 'not_insert';
+        }
+    } else {
+        $res_msg = 'username_invalid';
     }
 
     $response = ['msg' => $res_msg];

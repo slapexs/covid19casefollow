@@ -29,6 +29,8 @@ if (!isset($_SESSION['m_id'])) {
 <body onload="getstatcovid()">
     <?php
     include_once('./components/navbar.php');
+    // Moda
+    include_once('./components/modal_adduser.php');
     ?>
 
     <div class="container">

@@ -10,7 +10,16 @@ if ($smrole != 2) {
     <hr>
 
     <div class="bg-light rounded p-3">
-        <h5><i class="ri-group-line"></i> บัญชีผู้ใช้ทั้งหมด</h5>
+        <div class="row mb-2">
+            <div class="col">
+                <h5><i class="ri-group-line"></i> บัญชีผู้ใช้ทั้งหมด</h5>
+            </div>
+
+            <div class="col-auto">
+                <button class="btn btn-success btn-sm" type="button" data-toggle="modal" data-target="#modaladduser"><i class="ri-user-add-line"></i> เพิ่มบัญชีผู้ใช้</button>
+            </div>
+        </div>
+
 
         <div class="table-responsie">
             <table class="table table-sm">
