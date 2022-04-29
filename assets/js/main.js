@@ -19,3 +19,32 @@ const getstatcovid = async () => {
     console.log(error);
   }
 };
+
+// Delete user
+function deluser(mid, smid) {
+  const statedel = confirm('ต้องการลบบัญชีผู้ใช้นี้ ?');
+
+  // Check current user
+  if (statedel == true) {
+    if (mid == smid) {
+      alert('ผิดพลาด! ไม่สามารถลบบัญชีกำลังใช้งานได้');
+      window.location.href = './?page=users';
+    } else {
+      $.ajax({
+        url: './backend/function.php',
+        type: 'post',
+        data: { deluser: mid },
+        dataType: 'json',
+        success: (res) => {
+          if (res.msg == 'deleted') {
+            alert('ลบบัญชีผู้ใช้เรียบร้อย');
+            window.location.reload();
+          } else {
+            alert('ผิดพลาด! ไม่สามารถลบบัญชีผู้ใช้ได้');
+            window.location.reload();
+          }
+        },
+      });
+    }
+  }
+}

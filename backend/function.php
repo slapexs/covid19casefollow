@@ -94,3 +94,20 @@ if (isset($_POST['changepassword'])) {
     $response = ['msg' => $res_msg];
     echo json_encode($response);
 }
+
+// Delete user
+if (isset($_POST['deluser'])){
+    $delmid = $_POST['deluser'];
+    $del = "DELETE FROM `members` WHERE `m_id` = :delmid";
+    $qdel = $conn->prepare($del);
+    $qdel->bindParam(':delmid', $delmid);
+    $qdel->execute();
+    if ($qdel){
+        $res_msg = 'deleted';
+    }else{
+        $res_msg = 'note_delete';
+    }
+
+    $response = ['msg' => $res_msg];
+    echo json_encode($response);
+}

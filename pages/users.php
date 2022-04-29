@@ -42,7 +42,7 @@ if ($smrole != 2) {
                                     </div>
                                 </div>
                                 <div class="btn-group">
-                                    <button class="btn btn-sm btn-secondary" type="button">ลบบัญชี</button>
+                                    <button class="btn btn-sm btn-secondary" type="button" onclick="deluser('<?= $rallusers['m_id']; ?>', '<?= $smid; ?>')">ลบบัญชี</button>
                                 </div>
                             </td>
                         </tr>
