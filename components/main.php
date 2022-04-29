@@ -1,8 +1,9 @@
 <div class="mt-5">
     <div class="row">
+        <!-- Phrae covid19 stat -->
         <div class="col-lg-7">
             <div class="bg-light rounded p-3">
-                <h4><img src="./assets/image/mask.png" class="img-fluid" alt="human-virus" draggable="false" width="48"> สถิติผู้ติดเชื้อในจังหวัดแพร่</h4>
+                <h4><img src="./assets/image/mask.png" class="img-fluid" alt="human-virus" draggable="false" width="32"> สถิติผู้ติดเชื้อในจังหวัดแพร่</h4>
                 <hr class="mb-0">
                 <div class="row">
                     <div class="col-md-6 px-2">
@@ -62,6 +63,22 @@
                         </span></small>
                 </div>
 
+            </div>
+        </div>
+
+        <!-- Case counter -->
+        <div class="col-lg-5">
+            <div class="bg-light rounded p-3">
+                <h4><img src="./assets/image/clipboard.png" class="img-fluid" alt="case counter" draggable="false" width="32"> จำนวนเคสผู้ป่วยสะสม</h4>
+                <hr class="">
+                <ul class="list-group">
+                    <?php for ($i=1; $i<14; $i++){ ?>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        หมู่ที่ <?= $i; ?>
+                        <span class="badge badge-primary badge-pill"><?= number_format($i+1002, 0); ?></span>
+                    </li>
+                    <?php } ?>        
+                </ul>            
             </div>
         </div>
     </div>
