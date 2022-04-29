@@ -26,7 +26,7 @@ if (!isset($_SESSION['m_id'])) {
     <title>ระบบบันทึกและติดตามเคสผู้ป่วยโควิด-19 รพ.สต.ร้องกวาง</title>
 </head>
 
-<body>
+<body onload="getstatcovid()">
     <?php
     include_once('./components/navbar.php');
     ?>
@@ -42,7 +42,7 @@ if (!isset($_SESSION['m_id'])) {
                 break;
 
             default:
-                # code...
+                include_once('./components/main.php');
                 break;
         }
         ?>
@@ -52,6 +52,10 @@ if (!isset($_SESSION['m_id'])) {
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Main js -->
+    <script src="./assets/js/main.js"></script>
     <!-- Profile js -->
     <script src="./assets/js/profile.js"></script>
     <!-- Password -->
