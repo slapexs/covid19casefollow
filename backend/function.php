@@ -7,6 +7,7 @@ include_once('./condb.php');
 $smid = $_SESSION['m_id'];
 $page = $_GET['page'];
 $memberroles = ['อสม.', 'แพทย์', 'แอดมิน'];
+$smrole = $_SESSION['m_role'];
 
 // Checklogin
 if (isset($_POST['checklogin'])) {

@@ -8,3 +8,10 @@ if (isset($smid)){
     $qacc->execute();
     $racc = $qacc->fetch();
 }
+
+// All users
+if (isset($smid) && $smrole == 2){
+    $allusers = "SELECT * FROM `members` ORDER BY `m_id` ASC";
+    $qallusers = $conn->prepare($allusers);
+    $qallusers->execute();
+}

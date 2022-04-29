@@ -7,8 +7,8 @@
 
         <div class="collapse navbar-collapse" id="mainnavbar">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Link 1</a>
+                <li class="nav-item <?= ($page == 'users' ? 'active' : '') ?>">
+                    <a class="nav-link" href="./?page=users"><i class="ri-group-line"></i> จัดการบัญชีผู้ใช้</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link 2</a>

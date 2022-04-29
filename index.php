@@ -40,6 +40,9 @@ if (!isset($_SESSION['m_id'])) {
             case 'password';
                 include_once('./pages/changepassword.php');
                 break;
+            case 'users':
+                include_once('./pages/users.php');
+                break;
 
             default:
                 include_once('./components/main.php');
