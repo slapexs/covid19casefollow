@@ -64,6 +64,27 @@
                 </div>
 
             </div>
+
+            <!-- End of quarantine -->
+
+            <div class="card mt-3 shadow mb-md-3">
+                <div class="card-body">
+                    <h5><img src="./assets/image/search.png" class="img-fluid" alt="case search" draggable="false" width="32"> ค้นหาเคสผู้ป่วย</h5>
+                    <hr>
+
+                    <form action="" id="formcasesearch">
+                        <div class="form-group row">
+                            <div class="col">
+                            <input type="text" name="searchcase_name" id="searchcase_name" class="form-control" placeholder="ค้นหาด้วยชื่อ หรือเบอร์โทรศัพท์ผู้ป่วย" required>
+                            </div>
+                            <div class="col-auto">
+                                <button class="btn btn-primary" type="submit">ค้นหา</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
 
         <!-- Case counter -->
@@ -72,13 +93,13 @@
                 <h4><img src="./assets/image/clipboard.png" class="img-fluid" alt="case counter" draggable="false" width="32"> จำนวนเคสผู้ป่วยสะสม</h4>
                 <hr class="">
                 <ul class="list-group">
-                    <?php for ($i=1; $i<14; $i++){ ?>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        หมู่ที่ <?= $i; ?>
-                        <span class="badge badge-primary badge-pill"><?= number_format($i+1002, 0); ?></span>
-                    </li>
-                    <?php } ?>        
-                </ul>            
+                    <?php for ($i = 1; $i < 14; $i++) { ?>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            หมู่ที่ <?= $i; ?>
+                            <span class="badge badge-primary badge-pill"><?= number_format($i + 1002, 0); ?></span>
+                        </li>
+                    <?php } ?>
+                </ul>
             </div>
         </div>
     </div>
