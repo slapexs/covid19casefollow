@@ -145,10 +145,10 @@ if (isset($_POST['adduser'])) {
 }
 
 // Admin edit user
-if (isset($_POST['adminedituser'])){
+if (isset($_POST['adminedituser'])) {
     $data = $_POST['adminedituser'];
     // Check admin role
-    if ($smrole == 2){
+    if ($smrole == 2) {
         $update = "UPDATE `members` SET `m_username` = :musername, `m_fname` = :fname, `m_lname` = :lname, `m_role` = :mrole WHERE `m_id` = :mid";
         $qupdate = $conn->prepare($update);
         $qupdate->bindParam(':musername', $data[1]);
@@ -158,12 +158,12 @@ if (isset($_POST['adminedituser'])){
         $qupdate->bindParam(':mid', $data[0]);
         $qupdate->execute();
 
-        if ($qupdate){
+        if ($qupdate) {
             $res_msg = 'updated';
-        }else{
+        } else {
             $res_msg = "not_update";
         }
-    }else{
+    } else {
         $res_msg = 'invalid_role';
     }
 
@@ -172,13 +172,13 @@ if (isset($_POST['adminedituser'])){
 }
 
 // Admin change user password
-if(isset($_POST['adminchangeuserpassword'])){
+if (isset($_POST['adminchangeuserpassword'])) {
     $data = $_POST['adminchangeuserpassword'];
 
     // Check admin role
-    if ($smrole == 2){
+    if ($smrole == 2) {
         // Check match password
-        if ($data[1] == $data[2]){
+        if ($data[1] == $data[2]) {
             // Change user password
             $hashpwd = password_hash($data[1], PASSWORD_DEFAULT);
             $chgpwd = "UPDATE `members` SET `m_password` = :newpassword WHERE `m_id` = :mid";
@@ -186,16 +186,50 @@ if(isset($_POST['adminchangeuserpassword'])){
             $qchgpwd->bindParam(':newpassword', $hashpwd);
             $qchgpwd->bindParam(':mid', $data[0]);
             $qchgpwd->execute();
-            if ($qchgpwd){
+            if ($qchgpwd) {
                 $res_msg = 'changed';
-            }else{
+            } else {
                 $res_msg = 'not_change';
             }
-        }else{
+        } else {
             $res_msg = 'password_not_match';
         }
-    }else{
+    } else {
         $res_msg = 'invalid_role';
+    }
+
+    $response = ['msg' => $res_msg];
+    echo json_encode($response);
+}
+
+// Doctor add case
+if (isset($_POST['addcase'])) {
+    $data = $_POST['addcase'];
+    $addr = $data[11] . ' ม.' . $data[2] . ' ต.ร้องกวาง อ.ร้องกวาง จ.แพร่ 54140';
+    if ($smrole == 1){
+        $ins = "INSERT INTO `cases` (`c_id`, `c_ref_docid`, `c_village_num`, `c_fname`, `c_lname`, `c_cardid`, `c_address`, `c_phone`, `c_detail`, `c_note`, `c_start_quarantine`, `c_end_quarantine`) VALUES (:cid, :crefdocid, :cvillagenum, :cfname, :clname, :ccardid, :caddress, :cphone, :cdetail, :cnote, :cstart, :cend)";
+
+    $qins = $conn->prepare($ins);
+    $qins->bindParam(':cid', $data[0]);
+    $qins->bindParam(':crefdocid', $data[1]);
+    $qins->bindParam(':cvillagenum', $data[2]);
+    $qins->bindParam(':cfname', $data[3]);
+    $qins->bindParam(':clname', $data[4]);
+    $qins->bindParam(':ccardid', $data[5]);
+    $qins->bindParam(':caddress', $addr);
+    $qins->bindParam(':cphone', $data[6]);
+    $qins->bindParam(':cdetail', $data[7]);
+    $qins->bindParam(':cnote', $data[8]);
+    $qins->bindParam(':cstart', $data[9]);
+    $qins->bindParam(':cend', $data[10]);
+    $qins->execute();
+    if ($qins) {
+        $res_msg = 'inserted';
+    } else {
+        $res_msg = 'note_insert';
+    }
+    }else{
+        $res_msg = 'role_invalid';
     }
 
     $response = ['msg' => $res_msg];

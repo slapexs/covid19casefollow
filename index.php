@@ -50,6 +50,9 @@ if (!isset($_SESSION['m_id'])) {
             case 'allcase':
                 include_once('./pages/allcase.php');
                 break;
+            case 'addcase':
+                include_once('./pages/addcase.php');
+                break;
 
             default:
                 include_once('./components/main.php');
@@ -70,6 +73,8 @@ if (!isset($_SESSION['m_id'])) {
     <script src="./assets/js/profile.js"></script>
     <!-- Password -->
     <script src="./assets/js/password.js"></script>
+    <!-- Case -->
+    <script src="./assets/js/case.js"></script>
 </body>
 
 </html>
