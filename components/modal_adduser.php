@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="m_lname">ชื่อบัญชีผู้ใช้</label>
+                        <label for="m_lname">นามสกุล</label>
                         <input type="text" name="m_lname" id="m_lname" class="form-control" placeholder="lastname" required>
                     </div>
 

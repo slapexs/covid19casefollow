@@ -142,3 +142,30 @@ if (isset($_POST['adduser'])) {
     $response = ['msg' => $res_msg];
     echo json_encode($response);
 }
+
+// Admin edit user
+if (isset($_POST['adminedituser'])){
+    $data = $_POST['adminedituser'];
+    // Check admin role
+    if ($smrole == 2){
+        $update = "UPDATE `members` SET `m_username` = :musername, `m_fname` = :fname, `m_lname` = :lname, `m_role` = :mrole WHERE `m_id` = :mid";
+        $qupdate = $conn->prepare($update);
+        $qupdate->bindParam(':musername', $data[1]);
+        $qupdate->bindParam(':fname', $data[2]);
+        $qupdate->bindParam(':lname', $data[3]);
+        $qupdate->bindParam(':mrole', $data[4]);
+        $qupdate->bindParam(':mid', $data[0]);
+        $qupdate->execute();
+
+        if ($qupdate){
+            $res_msg = 'updated';
+        }else{
+            $res_msg = "not_update";
+        }
+    }else{
+        $res_msg = 'invalid_role';
+    }
+
+    $response = ['msg' => $res_msg];
+    echo json_encode($response);
+}

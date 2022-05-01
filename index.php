@@ -31,6 +31,7 @@ if (!isset($_SESSION['m_id'])) {
     include_once('./components/navbar.php');
     // Moda
     include_once('./components/modal_adduser.php');
+    include_once('./components/modal_edituser.php');
     ?>
 
     <div class="container">
