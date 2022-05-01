@@ -8,6 +8,8 @@ $smid = $_SESSION['m_id'];
 $page = $_GET['page'];
 $memberroles = ['อสม.', 'แพทย์', 'แอดมิน'];
 $smrole = $_SESSION['m_role'];
+$cid = base64_decode($_GET['cid']);
+$casestatus = ['<span class="badge badge-danger">กำลังรักษาตัว</span>', '<span class="badge badge-success">รักษาหาย</span>'];
 
 // Checklogin
 if (isset($_POST['checklogin'])) {

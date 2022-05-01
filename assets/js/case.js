@@ -29,6 +29,7 @@ $('#formaddcase').submit((e) => {
     'c_housenumber',
   ];
   const form_data = [];
+
   iddata.forEach((item) => {
     const data = $(`#${item}`).val();
     form_data.push(data);
@@ -49,5 +50,4 @@ $('#formaddcase').submit((e) => {
     },
     error: (err) => console.log(err),
   });
-
 });

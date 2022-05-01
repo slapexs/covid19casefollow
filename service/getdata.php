@@ -36,3 +36,12 @@ if (isset($smid) && $smrole >= 1){
     $qallcase = $conn->prepare($allcase);
     $qallcase->execute();
 }
+
+// View case
+if (isset($smid)){
+    $viewcase = "SELECT * FROM `cases` as c INNER JOIN `members` as m ON m.m_id = c.c_ref_docid WHERE`c_id` = :cid";
+    $qviewcase = $conn->prepare($viewcase);
+    $qviewcase->bindParam(':cid', $cid);
+    $qviewcase->execute();
+    $rviewcase = $qviewcase->fetch();
+}
