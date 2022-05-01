@@ -47,6 +47,9 @@ if (!isset($_SESSION['m_id'])) {
             case 'users':
                 include_once('./pages/users.php');
                 break;
+            case 'allcase':
+                include_once('./pages/allcase.php');
+                break;
 
             default:
                 include_once('./components/main.php');

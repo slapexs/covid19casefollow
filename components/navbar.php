@@ -7,12 +7,26 @@
 
         <div class="collapse navbar-collapse" id="mainnavbar">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item <?= ($page == 'users' ? 'active' : '') ?>">
-                    <a class="nav-link" href="./?page=users"><i class="ri-group-line"></i> จัดการบัญชีผู้ใช้</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link 2</a>
-                </li>
+                <?php if ($smrole == 1) { ?>
+                    <li class="nav-item <?= ($page == 'allcase' ? 'active' : '') ?>">
+                        <a class="nav-link" href="./?page=allcase"><i class="ri-list-ordered"></i> เคสผู้ป่วยทั้งหมด</a>
+                    </li>
+
+                    <li class="nav-item <?= ($page == 'getcase' ? 'active' : '') ?>">
+                        <a class="nav-link" href="./?page=getcase"><i class="ri-service-line"></i> รับเคสผู้ป่วย</a>
+                    </li>
+
+                    <li class="nav-item <?= ($page == 'addcase' ? 'active' : '') ?>">
+                        <a class="nav-link" href="./?page=addcase"><i class="ri-file-add-line"></i> เพิ่มเคสผู้ป่วย</a>
+                    </li>
+                <?php } ?>
+
+                <?php if ($smrole == 2) { ?>
+                    <li class="nav-item <?= ($page == 'users' ? 'active' : '') ?>">
+                        <a class="nav-link" href="./?page=users"><i class="ri-group-line"></i> จัดการบัญชีผู้ใช้</a>
+                    </li>
+                <?php } ?>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                         <?= (isset($smid) ?  $racc['m_username'] : ''); ?>
