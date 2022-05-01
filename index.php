@@ -32,6 +32,7 @@ if (!isset($_SESSION['m_id'])) {
     // Moda
     include_once('./components/modal_adduser.php');
     include_once('./components/modal_edituser.php');
+    include_once('./components/modal_changepassworduser.php');
     ?>
 
     <div class="container">

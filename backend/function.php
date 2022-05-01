@@ -122,10 +122,11 @@ if (isset($_POST['adduser'])) {
     $qfinduser->execute();
     $cfinduser = $qfinduser->rowCount();
     if ($cfinduser < 1) {
+        $hashpwd = password_hash($data[1], PASSWORD_DEFAULT);
         $ins = "INSERT INTO `members` (`m_username`, `m_password`, `m_fname`, `m_lname`, `m_role`) VALUES (:username, :hashpassword, :fname, :lname, :mrole)";
         $qins = $conn->prepare($ins);
         $qins->bindParam(':username', $data[0]);
-        $qins->bindParam(':hashpassword', password_verify($data[1], PASSWORD_DEFAULT));
+        $qins->bindParam(':hashpassword', $hashpwd);
         $qins->bindParam(':fname', $data[2]);
         $qins->bindParam(':lname', $data[3]);
         $qins->bindParam(':mrole', $data[4]);
@@ -161,6 +162,37 @@ if (isset($_POST['adminedituser'])){
             $res_msg = 'updated';
         }else{
             $res_msg = "not_update";
+        }
+    }else{
+        $res_msg = 'invalid_role';
+    }
+
+    $response = ['msg' => $res_msg];
+    echo json_encode($response);
+}
+
+// Admin change user password
+if(isset($_POST['adminchangeuserpassword'])){
+    $data = $_POST['adminchangeuserpassword'];
+
+    // Check admin role
+    if ($smrole == 2){
+        // Check match password
+        if ($data[1] == $data[2]){
+            // Change user password
+            $hashpwd = password_hash($data[1], PASSWORD_DEFAULT);
+            $chgpwd = "UPDATE `members` SET `m_password` = :newpassword WHERE `m_id` = :mid";
+            $qchgpwd = $conn->prepare($chgpwd);
+            $qchgpwd->bindParam(':newpassword', $hashpwd);
+            $qchgpwd->bindParam(':mid', $data[0]);
+            $qchgpwd->execute();
+            if ($qchgpwd){
+                $res_msg = 'changed';
+            }else{
+                $res_msg = 'not_change';
+            }
+        }else{
+            $res_msg = 'password_not_match';
         }
     }else{
         $res_msg = 'invalid_role';

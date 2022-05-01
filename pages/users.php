@@ -46,7 +46,7 @@ if ($smrole != 2) {
                                         <button class="btn btn-sm btn-warning" type="button" id="btn_edituser" data-toggle="dropdown" aria-expanded="false">แก้ไข</button>
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btn_edituser">
                                             <button class="dropdown-item" type="button" onclick="modaladmin_edituser('<?= $smrole; ?>', '<?= $rallusers['m_id']; ?>', '<?= $rallusers['m_username']; ?>', '<?= $rallusers['m_fname']; ?>', '<?= $rallusers['m_lname']; ?>', '<?= $rallusers['m_role']; ?>')"><i class="ri-user-line"></i> โปรไฟล์</button>
-                                            <button class="dropdown-item" type="button"><i class="ri-lock-password-line"></i> รหัสผ่าน</button>
+                                            <button class="dropdown-item" type="button" onclick="modaladmin_changepassworduser('<?= $smrole; ?>', '<?= $rallusers['m_id']; ?>', '<?= $rallusers['m_username']; ?>')"><i class="ri-lock-password-line"></i> รหัสผ่าน</button>
                                         </div>
                                     </div>
                                 </div>
