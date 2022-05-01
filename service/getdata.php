@@ -1,5 +1,19 @@
 <?php
 include_once('./backend/condb.php');
+
+// Generate case id 
+function getcaseid($n) {
+    $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $randomString = '';
+  
+    for ($i = 0; $i < $n; $i++) {
+        $index = rand(0, strlen($characters) - 1);
+        $randomString .= $characters[$index];
+    }
+  
+    return date('dmy').'-'.$randomString;
+}
+
 // Get user data if lgin pass
 if (isset($smid)){
     $acc = "SELECT * FROM `members` WHERE `m_id` = :smid";
@@ -21,17 +35,4 @@ if (isset($smid) && $smrole >= 1){
     $allcase = "SELECT * FROM `cases`";
     $qallcase = $conn->prepare($allcase);
     $qallcase->execute();
-}
-
-// Generate case id 
-function getcaseid($n) {
-    $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $randomString = '';
-  
-    for ($i = 0; $i < $n; $i++) {
-        $index = rand(0, strlen($characters) - 1);
-        $randomString .= $characters[$index];
-    }
-  
-    return date('dmy').'-'.$randomString;
 }
