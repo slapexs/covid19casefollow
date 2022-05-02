@@ -56,6 +56,9 @@ if (!isset($_SESSION['m_id'])) {
             case 'viewcase':
                 include_once('./pages/viewcase.php');
                 break;
+            case 'searchcase':
+                include_once('./pages/searchcase.php');
+                break;
 
             default:
                 include_once('./components/main.php');

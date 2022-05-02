@@ -56,3 +56,23 @@ $("#formaddcase").submit((e) => {
 function viewcasebyvillnum(villnum) {
   window.location.href = `./?page=allcase&villnum=${villnum}`;
 }
+
+// Search case
+$("#formcasesearch").submit((e) => {
+  e.preventDefault();
+
+  const form_data = $("#searchcase_name").val();
+
+  window.location.href = `./?page=searchcase&keyword=${btoa(form_data)}`;
+  // $.ajax({
+  //   url: "./backend/function.php",
+  //   type: "post",
+  //   data: { searchcase: form_data },
+  //   dataType: "json",
+  //   success: (res) => {
+  //     console.log(res);
+  //     $("#listsearchcase").modal("show");
+  //   },
+  //   error: (err) => console.log(err),
+  // });
+});

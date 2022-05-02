@@ -75,12 +75,11 @@
                     <form action="" id="formcasesearch">
                         <div class="form-group row">
                             <div class="col">
-                            <input type="text" name="searchcase_name" id="searchcase_name" class="form-control" placeholder="ค้นหาด้วยชื่อ หรือเบอร์โทรศัพท์ผู้ป่วย" required>
+                            <input type="text" name="searchcase_name" id="searchcase_name" class="form-control" placeholder="ค้นหาด้วยเลขประจำตัวประชาชน" required>
                             </div>
                             <div class="col-auto">
                                 <button class="btn btn-primary" type="submit">ค้นหา</button>
                             </div>
-
                         </div>
                     </form>
                 </div>

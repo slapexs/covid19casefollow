@@ -52,5 +52,14 @@ if (isset($smid)){
     $qfindcase = $conn->prepare($findcase);
     $qfindcase->bindParam(':villnum', $villnum);
     $qfindcase->execute();
-    
+}
+
+// Search case
+if (isset($smid)) {
+
+    // Search by phone
+    $searchcase = "SELECT * FROM `cases` WHERE `c_cardid` = :cardid";
+    $qsearchcase = $conn->prepare($searchcase);
+    $qsearchcase->bindParam(':cardid', $keyword);
+    $qsearchcase->execute();    
 }

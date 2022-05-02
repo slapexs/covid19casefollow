@@ -11,6 +11,7 @@ $smrole = $_SESSION['m_role'];
 $cid = base64_decode($_GET['cid']);
 $casestatus = ['<span class="badge badge-danger">กำลังรักษาตัว</span>', '<span class="badge badge-success">รักษาหาย</span>'];
 $villnum = $_GET['villnum'];
+$keyword = base64_decode($_GET['keyword']);
 
 // Checklogin
 if (isset($_POST['checklogin'])) {
@@ -209,29 +210,29 @@ if (isset($_POST['adminchangeuserpassword'])) {
 if (isset($_POST['addcase'])) {
     $data = $_POST['addcase'];
     $addr = $data[11] . ' ม.' . $data[2] . ' ต.ร้องกวาง อ.ร้องกวาง จ.แพร่ 54140';
-    if ($smrole == 1){
+    if ($smrole == 1) {
         $ins = "INSERT INTO `cases` (`c_id`, `c_ref_docid`, `c_village_num`, `c_fname`, `c_lname`, `c_cardid`, `c_address`, `c_phone`, `c_detail`, `c_note`, `c_start_quarantine`, `c_end_quarantine`) VALUES (:cid, :crefdocid, :cvillagenum, :cfname, :clname, :ccardid, :caddress, :cphone, :cdetail, :cnote, :cstart, :cend)";
 
-    $qins = $conn->prepare($ins);
-    $qins->bindParam(':cid', $data[0]);
-    $qins->bindParam(':crefdocid', $data[1]);
-    $qins->bindParam(':cvillagenum', $data[2]);
-    $qins->bindParam(':cfname', $data[3]);
-    $qins->bindParam(':clname', $data[4]);
-    $qins->bindParam(':ccardid', $data[5]);
-    $qins->bindParam(':caddress', $addr);
-    $qins->bindParam(':cphone', $data[6]);
-    $qins->bindParam(':cdetail', $data[7]);
-    $qins->bindParam(':cnote', $data[8]);
-    $qins->bindParam(':cstart', $data[9]);
-    $qins->bindParam(':cend', $data[10]);
-    $qins->execute();
-    if ($qins) {
-        $res_msg = 'inserted';
+        $qins = $conn->prepare($ins);
+        $qins->bindParam(':cid', $data[0]);
+        $qins->bindParam(':crefdocid', $data[1]);
+        $qins->bindParam(':cvillagenum', $data[2]);
+        $qins->bindParam(':cfname', $data[3]);
+        $qins->bindParam(':clname', $data[4]);
+        $qins->bindParam(':ccardid', $data[5]);
+        $qins->bindParam(':caddress', $addr);
+        $qins->bindParam(':cphone', $data[6]);
+        $qins->bindParam(':cdetail', $data[7]);
+        $qins->bindParam(':cnote', $data[8]);
+        $qins->bindParam(':cstart', $data[9]);
+        $qins->bindParam(':cend', $data[10]);
+        $qins->execute();
+        if ($qins) {
+            $res_msg = 'inserted';
+        } else {
+            $res_msg = 'note_insert';
+        }
     } else {
-        $res_msg = 'note_insert';
-    }
-    }else{
         $res_msg = 'role_invalid';
     }
 
