@@ -34,6 +34,7 @@
                                 <th>ID</th>
                                 <th>ผู้ป่วย</th>
                                 <th>เลขประจำตัวระชาชน</th>
+                                <th>หมู่ที่</th>
                                 <th>เบอร์โทรศัพท์</th>
                                 <th>เพิ่มเติม</th>
                             </tr>
@@ -42,10 +43,11 @@
                         <tbody>
                             <?php while ($rallcase = $qallcase->fetch()) { ?>
                                 <tr>
-                                    <td class="text-center"><?= $rallcase['c_id']; ?></td>
+                                    <td><?= $rallcase['c_id']; ?></td>
                                     <td><?= $rallcase['c_fname'] . ' ' . $rallcase['c_lname']; ?></td>
                                     <td><?= $rallcase['c_cardid']; ?></td>
-                                    <td><?= $rallcase['c_phone']; ?></td>
+                                    <td class="text-center"><?= $rallcase['c_village_num']; ?></td>
+                                    <td  class="text-center"><?= $rallcase['c_phone']; ?></td>
 
                                     <td class="text-center">
                                         <a href="./?page=viewcase&cid=<?= base64_encode($rallcase['c_id']); ?>" class="btn btn-sm btn-info">ดูข้อมูล</a>
