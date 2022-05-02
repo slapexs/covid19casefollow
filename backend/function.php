@@ -10,6 +10,7 @@ $memberroles = ['อสม.', 'แพทย์', 'แอดมิน'];
 $smrole = $_SESSION['m_role'];
 $cid = base64_decode($_GET['cid']);
 $casestatus = ['<span class="badge badge-danger">กำลังรักษาตัว</span>', '<span class="badge badge-success">รักษาหาย</span>'];
+$villnum = $_GET['villnum'];
 
 // Checklogin
 if (isset($_POST['checklogin'])) {

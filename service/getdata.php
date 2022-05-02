@@ -45,3 +45,12 @@ if (isset($smid)){
     $qviewcase->execute();
     $rviewcase = $qviewcase->fetch();
 }
+
+// View case by village number
+if (isset($smid)){
+    $findcase = "SELECT * FROM `cases` WHERE `c_village_num` = :villnum";
+    $qfindcase = $conn->prepare($findcase);
+    $qfindcase->bindParam(':villnum', $villnum);
+    $qfindcase->execute();
+    
+}

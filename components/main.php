@@ -100,7 +100,7 @@
                         $qcntcase->execute();
                         $rcntcase = $qcntcase->rowCount();
                     ?>
-                        <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" onclick="viewcasebyvillnum('<?= $i; ?>')">
                             หมู่ที่ <?= $i; ?>
                             <span class="text-primary"><?= number_format($rcntcase, 0); ?></span>
                         </button>
