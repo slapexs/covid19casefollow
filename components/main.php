@@ -92,14 +92,20 @@
             <div class="bg-light rounded p-3">
                 <h4><img src="./assets/image/clipboard.png" class="img-fluid" alt="case counter" draggable="false" width="32"> จำนวนเคสผู้ป่วยสะสม</h4>
                 <hr class="">
-                <ul class="list-group">
-                    <?php for ($i = 1; $i < 14; $i++) { ?>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div class="list-group">
+                    <?php for ($i = 1; $i < 14; $i++) {
+                        $cntcase = "SELECT * FROM `cases` WHERE `c_village_num` = :villnum";
+                        $qcntcase = $conn->prepare($cntcase);
+                        $qcntcase->bindParam(':villnum', $i);
+                        $qcntcase->execute();
+                        $rcntcase = $qcntcase->rowCount();
+                    ?>
+                        <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                             หมู่ที่ <?= $i; ?>
-                            <span class="badge badge-primary badge-pill"><?= number_format($i + 1002, 0); ?></span>
-                        </li>
+                            <span class="text-primary"><?= number_format($rcntcase, 0); ?></span>
+                        </button>
                     <?php } ?>
-                </ul>
+                </div>
             </div>
         </div>
     </div>
