@@ -72,3 +72,20 @@ if (isset($smid)){
     $qdoctors->execute();
 
 }
+
+// My all case
+if (isset($smid)){
+    $mycase = "SELECT * FROM `cases` WHERE `c_ref_docid` = :smid";
+    $qmycase = $conn->prepare($mycase);
+    $qmycase->bindParam(':smid', $smid);
+    $qmycase->execute();
+}
+
+// Find my case by vill num
+if (isset($smid)){
+    $findmycase = "SELECT * FROM `cases` WHERE `c_village_num` = :villnum AND `c_ref_docid` = :smid";
+    $qfindmycase = $conn->prepare($findmycase);
+    $qfindmycase->bindParam(':villnum', $villnum);
+    $qfindmycase->bindParam(':smid', $smid);
+    $qfindmycase->execute();
+}

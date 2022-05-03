@@ -14,6 +14,9 @@
                     <li class="nav-item <?= ($page == 'addcase' ? 'active' : '') ?>">
                         <a class="nav-link" href="./?page=addcase"><i class="ri-file-add-line"></i> เพิ่มเคสผู้ป่วย</a>
                     </li>
+                    <li class="nav-item <?= ($page == 'mycase' ? 'active' : '') ?>">
+                        <a class="nav-link" href="./?page=mycase"><i class="ri-folder-line"></i> เคสที่รับผิดชอบ</a>
+                    </li>
                 <?php } ?>
 
                 <?php if ($smrole == 2) { ?>
