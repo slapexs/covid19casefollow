@@ -7,7 +7,7 @@
             <div class="list-group">
                 <?php for ($i = 1; $i < 14; $i++) {
                     // Count case by village number
-                    if (isset($smid) && $smrole == 1) {
+                    if (isset($smid) && $smrole <= 1) {
                         $cnt = $conn->prepare("SELECT * FROM `cases` WHERE `c_village_num` = :villnum");
                         $cnt->bindParam(':villnum', $i);
                         $cnt->execute();
