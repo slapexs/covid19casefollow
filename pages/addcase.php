@@ -20,8 +20,17 @@ if ($smrole >= 1) {
 
                 <div class="col-md-4">
                     <label for="c_ref_docid">แพทย์เจ้าของเคส</label>
-                    <input type="hidden" name="c_ref_docid" id="c_ref_docid" value="<?= $smid; ?>" class="form-control" readonly required>
-                    <input type="text" name="c_ref_docname" id="c_ref_docname" class="form-control" value="<?= $racc['m_fname'] . '  ' . $racc['m_lname']; ?>" placeholder="Doctor" required readonly>
+                    <?php if ($smrole == 0) { ?>
+                        <select name="c_ref_docid" id="c_ref_docid" class="form-control" required>
+                            <!-- <option value="0" disabled hidden selected>-- เลือกแพทย์</option> -->
+                            <?php while ($rdoctors = $qdoctors->fetch()) { ?>
+                                <option value="<?= $rdoctors['m_id']; ?>"><?= $rdoctors['m_fname'] . ' ' . $rdoctors['m_lname']; ?></option>
+                            <?php } ?>
+                        </select>
+                    <?php } else if ($smrole == 1) { ?>
+                        <input type="hidden" name="c_ref_docid" id="c_ref_docid" value="<?= $smid; ?>" class="form-control" readonly required>
+                        <input type="text" name="c_ref_docname" id="c_ref_docname" class="form-control" value="<?= $racc['m_fname'] . '  ' . $racc['m_lname']; ?>" placeholder="Doctor" required readonly>
+                    <?php } ?>
                 </div>
 
                 <div class="col-md-4">

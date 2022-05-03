@@ -9,7 +9,7 @@ $page = $_GET['page'];
 $memberroles = ['อสม.', 'แพทย์', 'แอดมิน'];
 $smrole = $_SESSION['m_role'];
 $cid = base64_decode($_GET['cid']);
-$casestatus = ['<span class="badge badge-danger">กำลังรักษาตัว</span>', '<span class="badge badge-success">รักษาหาย</span>'];
+$casestatus = ['<span class="badge badge-danger">กำลังรักษาตัว</span>', '<span class="badge badge-success">รักษาหาย</span>', '<span class="badge badge-info">รอรับเคส</span>'];
 $villnum = $_GET['villnum'];
 $keyword = base64_decode($_GET['keyword']);
 
@@ -209,9 +209,13 @@ if (isset($_POST['adminchangeuserpassword'])) {
 // Doctor add case
 if (isset($_POST['addcase'])) {
     $data = $_POST['addcase'];
+    
+    
     $addr = $data[11] . ' ม.' . $data[2] . ' ต.ร้องกวาง อ.ร้องกวาง จ.แพร่ 54140';
-    if ($smrole == 1) {
-        $ins = "INSERT INTO `cases` (`c_id`, `c_ref_docid`, `c_village_num`, `c_fname`, `c_lname`, `c_cardid`, `c_address`, `c_phone`, `c_detail`, `c_note`, `c_start_quarantine`, `c_end_quarantine`) VALUES (:cid, :crefdocid, :cvillagenum, :cfname, :clname, :ccardid, :caddress, :cphone, :cdetail, :cnote, :cstart, :cend)";
+    if ($smrole <= 1) {
+        ($smrole == 1 ? $c_status =  1 : $c_status = 2);
+        
+        $ins = "INSERT INTO `cases` (`c_id`, `c_ref_docid`, `c_village_num`, `c_fname`, `c_lname`, `c_cardid`, `c_address`, `c_phone`, `c_detail`, `c_note`, `c_start_quarantine`, `c_end_quarantine`, `c_status`) VALUES (:cid, :crefdocid, :cvillagenum, :cfname, :clname, :ccardid, :caddress, :cphone, :cdetail, :cnote, :cstart, :cend, :cstatus)";
 
         $qins = $conn->prepare($ins);
         $qins->bindParam(':cid', $data[0]);
@@ -226,6 +230,7 @@ if (isset($_POST['addcase'])) {
         $qins->bindParam(':cnote', $data[8]);
         $qins->bindParam(':cstart', $data[9]);
         $qins->bindParam(':cend', $data[10]);
+        $qins->bindParam(':cstatus', $c_status);
         $qins->execute();
         if ($qins) {
             $res_msg = 'inserted';

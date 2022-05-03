@@ -31,7 +31,7 @@ if (isset($smid) && $smrole == 2){
 }
 
 // All case
-if (isset($smid) && $smrole >= 1){
+if (isset($smid)){
     $allcase = "SELECT * FROM `cases`";
     $qallcase = $conn->prepare($allcase);
     $qallcase->execute();
@@ -56,10 +56,19 @@ if (isset($smid)){
 
 // Search case
 if (isset($smid)) {
-
     // Search by phone
     $searchcase = "SELECT * FROM `cases` WHERE `c_cardid` = :cardid";
     $qsearchcase = $conn->prepare($searchcase);
     $qsearchcase->bindParam(':cardid', $keyword);
     $qsearchcase->execute();    
+}
+
+// Get all doctor for staff send case
+if (isset($smid)){
+    $docrole = 1;
+    $doctors = "SELECT * FROM `members` WHERE `m_role` = :docrole";
+    $qdoctors = $conn->prepare($doctors);
+    $qdoctors->bindParam(':docrole', $docrole);
+    $qdoctors->execute();
+
 }
