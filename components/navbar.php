@@ -7,23 +7,12 @@
 
         <div class="collapse navbar-collapse" id="mainnavbar">
             <ul class="navbar-nav ml-auto">
-                <?php if ($smrole == 0) { ?>
+                <?php if ($smrole <= 1) { ?>
                     <li class="nav-item <?= ($page == 'allcase' ? 'active' : '') ?>">
                         <a class="nav-link" href="./?page=allcase"><i class="ri-list-ordered"></i> เคสผู้ป่วยทั้งหมด</a>
                     </li>
                     <li class="nav-item <?= ($page == 'addcase' ? 'active' : '') ?>">
                         <a class="nav-link" href="./?page=addcase"><i class="ri-file-add-line"></i> เพิ่มเคสผู้ป่วย</a>
-                    </li>
-                <?php } ?>
-                <?php if ($smrole == 1) { ?>
-                    <li class="nav-item <?= ($page == 'allcase' ? 'active' : '') ?>">
-                        <a class="nav-link" href="./?page=allcase"><i class="ri-list-ordered"></i> เคสผู้ป่วยทั้งหมด</a>
-                    </li>
-                    <li class="nav-item <?= ($page == 'addcase' ? 'active' : '') ?>">
-                        <a class="nav-link" href="./?page=addcase"><i class="ri-file-add-line"></i> เพิ่มเคสผู้ป่วย</a>
-                    </li>
-                    <li class="nav-item <?= ($page == 'getcase' ? 'active' : '') ?>">
-                        <a class="nav-link" href="./?page=getcase"><i class="ri-service-line"></i> รับเคสผู้ป่วย</a>
                     </li>
                 <?php } ?>
 
