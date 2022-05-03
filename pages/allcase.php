@@ -36,6 +36,7 @@
                                 <th>เลขประจำตัวระชาชน</th>
                                 <th>หมู่ที่</th>
                                 <th>เบอร์โทรศัพท์</th>
+                                <th>สถานะ</th>
                                 <th>เพิ่มเติม</th>
                             </tr>
                         </thead>
@@ -50,6 +51,7 @@
                                         <td><?= $rallcase['c_cardid']; ?></td>
                                         <td class="text-center"><?= $rallcase['c_village_num']; ?></td>
                                         <td class="text-center"><?= $rallcase['c_phone']; ?></td>
+                                        <td class="text-center"><?= $casestatus[$rallcase['c_status']]; ?></td>
 
                                         <td class="text-center">
                                             <a href="./?page=viewcase&cid=<?= base64_encode($rallcase['c_id']); ?>" class="btn btn-sm btn-info">ดูข้อมูล</a>
