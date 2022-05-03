@@ -77,3 +77,36 @@ $('#formcasesearch').submit((e) => {
   //   error: (err) => console.log(err),
   // });
 });
+
+// doctor get case
+function getcase(caseid, docid, smid) {
+  const cf_getcase = confirm('ยืนยันรับเคสผู้ป่วย ?');
+  if (cf_getcase == true) {
+    if (docid == smid) {
+      $.ajax({
+        url: './backend/function.php',
+        type: 'post',
+        data: { getcase: caseid },
+        dataType: 'json',
+        success: (res) => {
+          if (res.msg == 'geted') {
+            alert('รับเคสเรียบร้อย');
+            window.location.href = './?page=mycase';
+          } else if (res.msg == 'mid_invalid') {
+            alert(
+              'ไม่สามารถรับเคสได้ เนื่องจากที่อยู่ผู้ป่วยอยู่นอกการรับผิดชอบ'
+            );
+            window.location.href = './?page=allcase';
+          } else {
+            alert('ผิดพลาด! ไม่สามารถรับเคสได้');
+            window.location.href = './?page=allcase';
+          }
+        },
+        error: (err) => console.log(err),
+      });
+    } else {
+      alert('ไม่สามารถรับเคสได้ เนื่องจากที่อยู่ผู้ป่วยอยู่นอกการรับผิดชอบ');
+      window.location.href = './?page=allcase';
+    }
+  }
+}

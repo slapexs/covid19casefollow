@@ -244,3 +244,23 @@ if (isset($_POST['addcase'])) {
     $response = ['msg' => $res_msg];
     echo json_encode($response);
 }
+
+// Doctor get case
+if (isset($_POST['getcase'])){
+    $caseid = $_POST['getcase'];
+    $caseinprogress = 1;
+    $get = "UPDATE `cases` SET `c_status` = :getcase WHERE `c_id` = :caseid";
+    $qget = $conn->prepare($get);
+    $qget->bindParam(':getcase', $caseinprogress);
+    $qget->bindParam(':caseid', $caseid);
+    $qget->execute();
+    if ($qget){
+        $res_msg = 'geted';
+    }else{
+        $res_msg = 'non_get';
+    }
+
+    $response = ['msg' => $res_msg];
+    echo json_encode($response);
+
+}

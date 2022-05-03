@@ -2,6 +2,24 @@
     <p class="display-4 text-muted"><i class="ri-information-line"></i> ข้อมูลเคสผู้ป่วย</p>
     <hr>
 
+    <!-- if status case is 2 -->
+    <?php if ($rviewcase['c_status'] == 2){ ?>
+    <div class="row mb-2">
+        <div class="col-lg-4 ml-auto">
+            <div class="card">
+                <div class="card-body ">
+                    <p>รับเคสผู้ป่วย</p>
+                    <?php if ($rviewcase['c_ref_docid'] == $smid) { ?>
+                        <button class="btn btn-primary btn-lg btn-block" type="button" onclick="getcase('<?= $rviewcase['c_id']; ?>', '<?= $rviewcase['c_ref_docid']; ?>', '<?= $smid; ?>')">รับเคส</button>
+                    <?php } else { ?>
+                        <button class="btn btn-primary btn-lg btn-block disabled" type="button" disabled>ไม่สามารถรับเคสได้</button>
+                        <small class="text-danger">เนื่องจากที่อยู่ผู้ป่วยอยู่นอกการรับผิดชอบ</small>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
     <div class="bg-light rounded p-3">
         <!-- ข้อมูลทั่วไป -->
         <div class="row">
