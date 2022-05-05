@@ -122,7 +122,7 @@ function downloadmycase(type, mid) {
 
 function downloadallcase(type) {
   if (type == "pdf") {
-    window.location.href = `./export/download_allcase_pdf.php`;
+    window.location.href = `./download_allcase_pdf.php`;
   } else if (type == "xlsx") {
     window.location.href = `./export/download_allcase_xlsx.php`;
   }
