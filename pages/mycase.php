@@ -28,10 +28,12 @@
 
         <div class="col-md-9">
             <!-- Download file -->
+            <?php if (!isset($villnum)){ ?>
             <div class="text-right mb-2">
                 <button class="btn btn-danger btn-sm" type="button" onclick="downloadmycase('pdf', '<?= $smid; ?>')"><i class="ri-file-pdf-line"></i> ดาวน์โหลดไฟล์ PDF</button>
                 <button class="btn btn-success btn-sm" type="button" onclick="downloadmycase('xlsx', '<?= $smid; ?>')"><i class="ri-file-excel-line"></i> ดาวน์โหลดไฟล์ Excel</button>
             </div>
+            <?php } ?>
             <div class="bg-light rounded">
 
                 <div class="table-response">
