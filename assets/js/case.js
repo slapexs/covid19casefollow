@@ -114,7 +114,7 @@ function getcase(caseid, docid, smid) {
 // Download file
 function downloadmycase(type, mid) {
   if (type == "pdf") {
-    window.location.href = `./export/download_mycase_pdf.php`;
+    window.location.href = `./download_mycase_pdf.php?mid=${mid}`;
   } else if (type == "xlsx") {
     window.location.href = `./export/download_mycase_xlsx.php?mid=${mid}`;
   }

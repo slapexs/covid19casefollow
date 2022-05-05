@@ -65,7 +65,7 @@ if (isset($_POST['file_content'])) {
         <table id="table_content" style="display: none;">
         <tr>
             <td><strong>แพทย์ผู้รับผิดชอบ</strong></td>
-            <td><?= $rdoc['m_fname'].' '.$rdoc['m_lname']; ?></td>
+            <td><?= $rdoc['m_fname'].' '.$rdoc['m_lname'] ?></td>
         </tr>
             <tr>
                 <th>รหัสเคส</th>
