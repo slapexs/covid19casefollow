@@ -1,0 +1,12 @@
+{
+  "name": "onze/covid19casefollow",
+  "authors": [
+    {
+      "name": "onze",
+      "email": "slapexs@gmail.com"
+    }
+  ],
+  "require": {
+    "phpoffice/phpspreadsheet": "^1.23"
+  }
+}

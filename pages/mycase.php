@@ -19,7 +19,7 @@
                         หมู่ที่ <?= $i; ?>
                         <span class="text-primary"><?= number_format($ccnt, 0); ?></span>
                     </a>
-                    
+
 
                 <?php } ?>
 
@@ -27,7 +27,13 @@
         </div>
 
         <div class="col-md-9">
+            <!-- Download file -->
+            <div class="text-right mb-2">
+                <button class="btn btn-danger btn-sm" type="button" onclick="downloadmycase('pdf', '<?= $smid; ?>')"><i class="ri-file-pdf-line"></i> ดาวน์โหลดไฟล์ PDF</button>
+                <button class="btn btn-success btn-sm" type="button" onclick="downloadmycase('xlsx', '<?= $smid; ?>')"><i class="ri-file-excel-line"></i> ดาวน์โหลดไฟล์ Excel</button>
+            </div>
             <div class="bg-light rounded">
+
                 <div class="table-response">
                     <table class="table table-sm">
                         <thead class="thead-dark">
