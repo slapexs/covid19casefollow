@@ -26,6 +26,11 @@
         </div>
 
         <div class="col-md-9">
+            <!-- Download file -->
+            <div class="text-right mb-2">
+                <button class="btn btn-danger btn-sm" type="button" onclick="downloadallcase('pdf')"><i class="ri-file-pdf-line"></i> ดาวน์โหลดไฟล์ PDF</button>
+                <button class="btn btn-success btn-sm" type="button" onclick="downloadallcase('xlsx')"><i class="ri-file-excel-line"></i> ดาวน์โหลดไฟล์ Excel</button>
+            </div>
             <div class="bg-light rounded">
                 <div class="table-response">
                     <table class="table table-sm">

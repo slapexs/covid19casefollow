@@ -119,3 +119,11 @@ function downloadmycase(type, mid) {
     window.location.href = `./export/download_mycase_xlsx.php?mid=${mid}`;
   }
 }
+
+function downloadallcase(type) {
+  if (type == "pdf") {
+    window.location.href = `./export/download_allcase_pdf.php`;
+  } else if (type == "xlsx") {
+    window.location.href = `./export/download_allcase_xlsx.php`;
+  }
+}
