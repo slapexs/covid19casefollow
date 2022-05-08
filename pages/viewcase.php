@@ -3,23 +3,23 @@
     <hr>
 
     <!-- if status case is 2 -->
-    <?php if ($rviewcase['c_status'] == 2){ ?>
-    <div class="row mb-2">
-        <div class="col-lg-4 ml-auto">
-            <div class="card">
-                <div class="card-body ">
-                    <p>รับเคสผู้ป่วย</p>
-                    <?php if ($rviewcase['c_ref_docid'] == $smid) { ?>
-                        <button class="btn btn-primary btn-lg btn-block" type="button" onclick="getcase('<?= $rviewcase['c_id']; ?>', '<?= $rviewcase['c_ref_docid']; ?>', '<?= $smid; ?>')">รับเคส</button>
-                    <?php } else { ?>
-                        <button class="btn btn-primary btn-lg btn-block disabled" type="button" disabled>ไม่สามารถรับเคสได้</button>
-                        <small class="text-danger">เนื่องจากที่อยู่ผู้ป่วยอยู่นอกการรับผิดชอบ</small>
-                    <?php } ?>
+    <?php if ($rviewcase['c_status'] == 2) { ?>
+        <div class="row mb-2">
+            <div class="col-lg-4 ml-auto">
+                <div class="card">
+                    <div class="card-body ">
+                        <p>รับเคสผู้ป่วย</p>
+                        <?php if ($rviewcase['c_ref_docid'] == $smid) { ?>
+                            <button class="btn btn-primary btn-lg btn-block" type="button" onclick="getcase('<?= $rviewcase['c_id']; ?>', '<?= $rviewcase['c_ref_docid']; ?>', '<?= $smid; ?>')">รับเคส</button>
+                        <?php } else { ?>
+                            <button class="btn btn-primary btn-lg btn-block disabled" type="button" disabled>ไม่สามารถรับเคสได้</button>
+                            <small class="text-danger">เนื่องจากที่อยู่ผู้ป่วยอยู่นอกการรับผิดชอบ</small>
+                        <?php } ?>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-<?php } ?>
+    <?php } ?>
     <div class="bg-light rounded p-3">
         <!-- ข้อมูลทั่วไป -->
         <div class="row">
@@ -56,6 +56,28 @@
                     <p class="mb-4"><?= $rviewcase['c_detail']; ?></p>
                     <p class="text-primary">หมายเหตุ</p>
                     <p><?= $rviewcase['c_note']; ?></p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body border-info border">
+                    <h5>แก้ไขสถานะเคสผู้ป่วย</h5>
+                    <form action="" id="updatecase">
+                        <input type="hidden" name="c_update_id" id="c_update_id" value="<?= $rviewcase['c_id']; ?>" class="form-control" readonly required>
+                        <div class="form-row">
+                            <div class="col">
+                                <select name="c_update_status" id="c_update_status" class="form-control" required>
+                                    <option value="0">กำลังรักษา</option>
+                                    <option value="1">รักษาหายแล้ว</option>
+                                    <option value="2">เสียชีวิต</option>
+                                </select>
+                            </div>
+
+                            <div class="col-auto">
+                                <button class="btn btn-primary" type="submit">บันทึก</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
 

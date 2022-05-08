@@ -127,3 +127,29 @@ function downloadallcase(type) {
     window.location.href = `./export/download_allcase_xlsx.php`;
   }
 }
+
+// Update case status
+$("#updatecase").submit((e) => {
+  e.preventDefault();
+  const form_data = [$("#c_update_id").val(), $("#c_update_status").val()];
+
+  $.ajax({
+    url: "./backend/function.php",
+    type: "post",
+    data: { updatecase_status: form_data },
+    dataType: "json",
+    success: (res) => {
+      if (res.msg == "updated") {
+        alert("แก้ไขสถานะเคสผู้ป่วยเรียบร้อย");
+        window.location.reload();
+      } else {
+        alert("ผิดพลาด! ไม่สามารถแก้ไขสถานะเคสผู้ป่วยได้");
+        window.location.reload();
+      }
+    },
+    error: (err) => {
+      alert("ผิดพลาด! ไม่สามารถแก้ไขสถานะเคสผู้ป่วยได้");
+      window.location.reload();
+    },
+  });
+});

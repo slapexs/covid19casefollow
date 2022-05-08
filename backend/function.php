@@ -264,3 +264,21 @@ if (isset($_POST['getcase'])){
     echo json_encode($response);
 
 }
+
+// Doctor update case status
+if (isset($_POST['updatecase_status'])){
+    $data = $_POST['updatecase_status'];
+    $update = "UPDATE `cases` SET `c_status` = :casestatus WHERE `c_id` = :caseid";
+    $qupdate = $conn->prepare($update);
+    $qupdate->bindParam(':casestatus', $data[1]);
+    $qupdate->bindParam(':caseid', $data[0]);
+    $qupdate->execute();
+    if ($qupdate){
+        $res_msg = "updated";
+    }else{
+        $res_msg = "no_update";
+    }
+
+    $response = ['msg' => $res_msg];
+    echo json_encode($response);
+}
