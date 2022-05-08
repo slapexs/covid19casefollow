@@ -69,7 +69,7 @@
                                 <select name="c_update_status" id="c_update_status" class="form-control" required>
                                     <option value="0">กำลังรักษา</option>
                                     <option value="1">รักษาหายแล้ว</option>
-                                    <option value="2">เสียชีวิต</option>
+                                    <option value="3">เสียชีวิต</option>
                                 </select>
                             </div>
 
