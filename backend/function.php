@@ -248,7 +248,7 @@ if (isset($_POST['addcase'])) {
 // Doctor get case
 if (isset($_POST['getcase'])){
     $caseid = $_POST['getcase'];
-    $caseinprogress = 1;
+    $caseinprogress = 0;
     $get = "UPDATE `cases` SET `c_status` = :getcase WHERE `c_id` = :caseid";
     $qget = $conn->prepare($get);
     $qget->bindParam(':getcase', $caseinprogress);
