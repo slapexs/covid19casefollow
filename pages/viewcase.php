@@ -59,6 +59,7 @@
                 </div>
             </div>
 
+            <?php if ($rviewcase['c_status'] != 2){ ?>
             <div class="card">
                 <div class="card-body border-info border">
                     <h5>แก้ไขสถานะเคสผู้ป่วย</h5>
@@ -80,6 +81,7 @@
                     </form>
                 </div>
             </div>
+            <?php } ?>
 
         </div>
     </div>
