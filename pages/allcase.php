@@ -34,7 +34,7 @@
             </div>
             <?php } ?>
             <div class="bg-light rounded">
-                <div class="table-response">
+                <div class="table-responsive">
                     <table class="table table-sm">
                         <thead class="thead-dark">
                             <tr class="text-center align-middle">

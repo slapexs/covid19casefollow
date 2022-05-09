@@ -33,6 +33,7 @@ if (!isset($_SESSION['m_id'])) {
     include_once('./components/modal_adduser.php');
     include_once('./components/modal_edituser.php');
     include_once('./components/modal_changepassworduser.php');
+    include_once('./components/modal_editcase.php');
     ?>
 
     <div class="container">

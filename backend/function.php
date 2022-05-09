@@ -311,3 +311,53 @@ if (isset($_POST['deletecase'])) {
     $response = ['msg' => $res_msg];
     echo json_encode($response);
 }
+
+// Doctor get case data for edit
+if (isset($_POST['getcasedata_foredit'])){
+    $data = $_POST['getcasedata_foredit'];
+
+    $find = $conn->prepare("SELECT * FROM `cases` WHERE `c_id` = :caseid");
+    $find->bindParam(':caseid', $data);
+    $find->execute();
+    $rfind = $find->fetch();
+
+    $response = $rfind;
+    echo json_encode($response);
+}
+
+// Function doctor edit case
+if (isset($_POST['editcase'])){
+    $data = $_POST['editcase'];
+    $addr = $data[11] . ' ม.' . $data[5] . ' ต.ร้องกวาง อ.ร้องกวาง จ.แพร่ 54140';
+    // Check ref_docid
+    $case = $conn->prepare("SELECT * FROM `cases` WHERE `c_id` = :caseid");
+    $case->bindParam(':caseid', $data[0]);
+    $case->execute();
+    $rcase = $case->fetch();
+    if ($rcase['c_ref_docid'] == $smid){
+        // Update case
+        $update = $conn->prepare("UPDATE `cases` SET `c_fname` = :fname, `c_lname` = :lname, `c_cardid` = :cardid, `c_address` = :addr, `c_phone` = :phone, `c_village_num` = :villnum, `c_detail` = :detail, `c_note` = :note, `c_start_quarantine` = :qstart, `c_end_quarantine` = :qend WHERE `c_id` = :caseid");
+        $update->bindParam(':fname', $data[1]);
+        $update->bindParam(':lname', $data[2]);
+        $update->bindParam(':cardid', $data[3]);
+        $update->bindParam(':addr', $addr);
+        $update->bindParam(':phone', $data[4]);
+        $update->bindParam(':villnum', $data[5]);
+        $update->bindParam(':detail', $data[7]);
+        $update->bindParam(':note', $data[8]);
+        $update->bindParam(':qstart', $data[9]);
+        $update->bindParam(':qend', $data[10]);
+        $update->bindParam(':caseid', $data[0]);
+        $update->execute();
+        if ($update){
+            $res_msg = 'updated';
+        }else{
+            $res_msg = 'not_update';
+        }
+    }else{
+        $res_msg = 'mid_not_match';
+    }
+    $response = ['msg' => $res_msg];
+    echo json_encode($response);
+
+}

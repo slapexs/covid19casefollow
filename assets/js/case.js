@@ -179,3 +179,75 @@ function deletecase(caseid, mid) {
     });
   }
 }
+
+// Function doctor edit case
+function editcase(caseid) {
+  // Get data
+  $.ajax({
+    url: "./backend/function.php",
+    type: "post",
+    data: { getcasedata_foredit: caseid },
+    dataType: "json",
+    success: (res) => {
+      const address = res.c_address;
+      const cutaddr = address.split(" ");
+
+      $("#editcase_id").val(res.c_id);
+      $("#editcase_fname").val(res.c_fname);
+      $("#editcase_lname").val(res.c_lname);
+      $("#editcase_housenumber").val(cutaddr[0]);
+      $("#editcase_village_num").val(res.c_village_num);
+      $("#editcase_address").val(res.c_address);
+      $("#editcase_cardid").val(res.c_cardid);
+      $("#editcase_phone").val(res.c_phone);
+      $("#editcase_detail").val(res.c_detail);
+      $("#editcase_note").val(res.c_note);
+      $("#editcase_start_quarantine").val(res.c_start_quarantine);
+      $("#editcase_end_quarantine").val(res.c_end_quarantine);
+    },
+  });
+  $("#modaleditcase").modal("show");
+}
+
+// form submit edit case
+$("#formeditcase").submit((e) => {
+  e.preventDefault();
+
+  const form_data = [
+    $("#editcase_id").val(),
+    $("#editcase_fname").val(),
+    $("#editcase_lname").val(),
+    $("#editcase_cardid").val(),
+    $("#editcase_phone").val(),
+    $("#editcase_village_num").val(),
+    $("#editcase_address").val(),
+    $("#editcase_detail").val(),
+    $("#editcase_note").val(),
+    $("#editcase_start_quarantine").val(),
+    $("#editcase_end_quarantine").val(),
+    $("#editcase_housenumber").val(),
+  ];
+
+  $.ajax({
+    url: "./backend/function.php",
+    type: "post",
+    data: { editcase: form_data },
+    dataType: "json",
+    success: (res) => {
+      if (res.msg == "updated") {
+        alert("แก้ไขเคสผู้ป่วยเรียบร้อย");
+        window.location.reload();
+      } else if (res.msg == "mid_not_match") {
+        alert("ผิดพลาด! ไม่สามารถแก้ไขเคสผู้ป่วยได้");
+        window.location.reload();
+      } else {
+        alert("ผิดพลาด! ไม่สามารถแก้ไขเคสผู้ป่วยได้");
+        window.location.reload();
+      }
+    },
+    error: (err) => {
+      alert("ผิดพลาด! ไม่สามารถแก้ไขเคสผู้ป่วยได้");
+      window.location.reload();
+    },
+  });
+});
