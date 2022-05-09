@@ -20,6 +20,50 @@
             </div>
         </div>
     <?php } ?>
+
+    <!-- Case action -->
+    <div class="row mb-3">
+        <div class="col-md-5">
+            <?php if ($rviewcase['c_status'] != 2) {
+                if ($rviewcase['c_ref_docid'] == $smid) {
+
+            ?>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>แก้ไขสถานะเคสผู้ป่วย</h5>
+                            <form action="" id="updatecase">
+                                <input type="hidden" name="c_update_id" id="c_update_id" value="<?= $rviewcase['c_id']; ?>" class="form-control" readonly required>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <select name="c_update_status" id="c_update_status" class="form-control" required>
+                                            <option value="0">กำลังรักษา</option>
+                                            <option value="1">รักษาหายแล้ว</option>
+                                            <option value="3">เสียชีวิต</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-auto">
+                                        <button class="btn btn-primary" type="submit">บันทึก</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+            <?php }
+            } ?>
+        </div>
+
+        <div class="col-md-auto">
+            <div class="card">
+                <div class="card-body">
+                    <h5>แก้ไขเคสผู้ป่วย</h5>
+                    <button class="btn btn-warning btn-sm" type="button">แก้ไขข้อมูล</button>
+                    <button class="btn btn-outline-secondary btn-sm" type="button" onclick="deletecase('<?= $rviewcase['c_id']; ?>', '<?= $smid; ?>')">ลบเคสผู้ป่วย</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="bg-light rounded p-3">
         <!-- ข้อมูลทั่วไป -->
         <p class="text-primary">ข้อมูลทั่วไป</p>
@@ -56,38 +100,6 @@
                 </div>
             </div>
 
-        </div>
-    </div>
-
-    <div class="row mt-3">
-        <div class="col-md-5">
-            <?php if ($rviewcase['c_status'] != 2) {
-                if ($rviewcase['c_ref_docid'] == $smid) {
-
-            ?>
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>แก้ไขสถานะเคสผู้ป่วย</h5>
-                            <form action="" id="updatecase">
-                                <input type="hidden" name="c_update_id" id="c_update_id" value="<?= $rviewcase['c_id']; ?>" class="form-control" readonly required>
-                                <div class="form-row">
-                                    <div class="col">
-                                        <select name="c_update_status" id="c_update_status" class="form-control" required>
-                                            <option value="0">กำลังรักษา</option>
-                                            <option value="1">รักษาหายแล้ว</option>
-                                            <option value="3">เสียชีวิต</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-auto">
-                                        <button class="btn btn-primary" type="submit">บันทึก</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-            <?php }
-            } ?>
         </div>
     </div>
 

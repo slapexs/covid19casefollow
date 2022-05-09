@@ -153,3 +153,29 @@ $("#updatecase").submit((e) => {
     },
   });
 });
+
+// Function delete case
+function deletecase(caseid, mid) {
+  const cf_delcase = confirm("ต้องการลบเคสผู้ป่วย ?");
+  if (cf_delcase) {
+    $.ajax({
+      url: "./backend/function.php",
+      type: "post",
+      data: { deletecase: [caseid, mid] },
+      dataType: "json",
+      success: (res) => {
+        if (res.msg == "deleted") {
+          alert("ลบข้อมูลเคสผู้ป่วยเรียบร้อย");
+          window.location.href = "./?page=mycase";
+        } else {
+          alert("ผิดพลาด! ลบข้อมูลเคสผู้ป่วยได้");
+          window.location.reload();
+        }
+      },
+      error: (err) => {
+        alert("ผิดพลาด!!! ลบข้อมูลเคสผู้ป่วยได้");
+        window.location.reload();
+      },
+    });
+  }
+}

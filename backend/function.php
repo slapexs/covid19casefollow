@@ -209,12 +209,12 @@ if (isset($_POST['adminchangeuserpassword'])) {
 // Doctor add case
 if (isset($_POST['addcase'])) {
     $data = $_POST['addcase'];
-    
-    
+
+
     $addr = $data[11] . ' ม.' . $data[2] . ' ต.ร้องกวาง อ.ร้องกวาง จ.แพร่ 54140';
     if ($smrole <= 1) {
-        ($smrole == 1 ? $c_status =  1 : $c_status = 2);
-        
+        ($smrole == 1 ? $c_status =  0 : $c_status = 2);
+
         $ins = "INSERT INTO `cases` (`c_id`, `c_ref_docid`, `c_village_num`, `c_fname`, `c_lname`, `c_cardid`, `c_address`, `c_phone`, `c_detail`, `c_note`, `c_start_quarantine`, `c_end_quarantine`, `c_status`) VALUES (:cid, :crefdocid, :cvillagenum, :cfname, :clname, :ccardid, :caddress, :cphone, :cdetail, :cnote, :cstart, :cend, :cstatus)";
 
         $qins = $conn->prepare($ins);
@@ -246,7 +246,7 @@ if (isset($_POST['addcase'])) {
 }
 
 // Doctor get case
-if (isset($_POST['getcase'])){
+if (isset($_POST['getcase'])) {
     $caseid = $_POST['getcase'];
     $caseinprogress = 0;
     $get = "UPDATE `cases` SET `c_status` = :getcase WHERE `c_id` = :caseid";
@@ -254,29 +254,58 @@ if (isset($_POST['getcase'])){
     $qget->bindParam(':getcase', $caseinprogress);
     $qget->bindParam(':caseid', $caseid);
     $qget->execute();
-    if ($qget){
+    if ($qget) {
         $res_msg = 'geted';
-    }else{
+    } else {
         $res_msg = 'non_get';
     }
 
     $response = ['msg' => $res_msg];
     echo json_encode($response);
-
 }
 
 // Doctor update case status
-if (isset($_POST['updatecase_status'])){
+if (isset($_POST['updatecase_status'])) {
     $data = $_POST['updatecase_status'];
     $update = "UPDATE `cases` SET `c_status` = :casestatus WHERE `c_id` = :caseid";
     $qupdate = $conn->prepare($update);
     $qupdate->bindParam(':casestatus', $data[1]);
     $qupdate->bindParam(':caseid', $data[0]);
     $qupdate->execute();
-    if ($qupdate){
+    if ($qupdate) {
         $res_msg = "updated";
-    }else{
+    } else {
         $res_msg = "no_update";
+    }
+
+    $response = ['msg' => $res_msg];
+    echo json_encode($response);
+}
+
+// Doctor delete case
+if (isset($_POST['deletecase'])) {
+    $data = $_POST['deletecase'];
+    // Findcase
+    $fndcase = "SELECT * FROM `cases` WHERE `c_id` = :caseid";
+    $qfndcase = $conn->prepare($fndcase);
+    $qfndcase->bindParam(':caseid', $data[0]);
+    $qfndcase->execute();
+    $rfndcase = $qfndcase->fetch();
+    $ref_docid = $rfndcase['c_ref_docid'];
+
+    // Check ref_docid
+    if ($ref_docid == $data[1]) {
+        $delcase = "DELETE FROM `cases` WHERE `c_id` = :caseid";
+        $qdelcase = $conn->prepare($delcase);
+        $qdelcase->bindParam(':caseid', $data[0]);
+        $qdelcase->execute();
+        if ($qdelcase) {
+            $res_msg = 'deleted';
+        } else {
+            $res_msg = 'not_delete';
+        }
+    } else {
+        $res_msg = 'cant_delete';
     }
 
     $response = ['msg' => $res_msg];
