@@ -27,6 +27,9 @@
                     <li class="nav-item <?= ($page == 'users' ? 'active' : '') ?>">
                         <a class="nav-link" href="./?page=users"><i class="ri-group-line"></i> จัดการบัญชีผู้ใช้</a>
                     </li>
+                    <li class="nav-item <?= ($page == 'allcase' ? 'active' : '') ?>">
+                        <a class="nav-link" href="./?page=allcase"><i class="ri-list-ordered"></i> เคสผู้ป่วยทั้งหมด</a>
+                    </li>
                 <?php } ?>
 
                 <li class="nav-item dropdown">
