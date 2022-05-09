@@ -22,12 +22,7 @@
     <?php } ?>
     <div class="bg-light rounded p-3">
         <!-- ข้อมูลทั่วไป -->
-        <div class="row">
-            <div class="col">
-                <p class="text-primary">ข้อมูลทั่วไป</p>
-            </div>
-            <div class="col-auto"><span class="text-muted">กำหนดกักตัว: </span> <span class="text-info"><?= $rviewcase['c_start_quarantine'] . ' - ' . $rviewcase['c_end_quarantine']; ?></span></div>
-        </div>
+        <p class="text-primary">ข้อมูลทั่วไป</p>
         <div class="row">
             <div class="col-md">
                 <p class="mb-0"><span class="text-muted">รหัสเคสผู้ป่วย:</span> &emsp; <span><?= $rviewcase['c_id']; ?></span></p>
@@ -40,7 +35,7 @@
             </div>
         </div>
 
-        <div class="mt-4">
+        <div class="mt-5">
             <div class="row">
                 <div class="col-md-6">
                     <p class="text-primary">ข้อมูลผู้ป่วย</p>
@@ -56,15 +51,22 @@
                     <p class="mb-4"><?= $rviewcase['c_detail']; ?></p>
                     <p class="text-primary">หมายเหตุ</p>
                     <p><?= $rviewcase['c_note']; ?></p>
+                    <p class="text-primary">กำหนดกักตัว</p>
+                    <p><?= $rviewcase['c_start_quarantine'] . ' - ' . $rviewcase['c_end_quarantine']; ?></p>
                 </div>
             </div>
 
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-5">
             <?php if ($rviewcase['c_status'] != 2) {
                 if ($rviewcase['c_ref_docid'] == $smid) {
 
             ?>
                     <div class="card">
-                        <div class="card-body border-info border">
+                        <div class="card-body">
                             <h5>แก้ไขสถานะเคสผู้ป่วย</h5>
                             <form action="" id="updatecase">
                                 <input type="hidden" name="c_update_id" id="c_update_id" value="<?= $rviewcase['c_id']; ?>" class="form-control" readonly required>
@@ -86,7 +88,6 @@
                     </div>
             <?php }
             } ?>
-
         </div>
     </div>
 
