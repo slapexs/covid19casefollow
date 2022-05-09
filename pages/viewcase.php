@@ -59,29 +59,33 @@
                 </div>
             </div>
 
-            <?php if ($rviewcase['c_status'] != 2){ ?>
-            <div class="card">
-                <div class="card-body border-info border">
-                    <h5>แก้ไขสถานะเคสผู้ป่วย</h5>
-                    <form action="" id="updatecase">
-                        <input type="hidden" name="c_update_id" id="c_update_id" value="<?= $rviewcase['c_id']; ?>" class="form-control" readonly required>
-                        <div class="form-row">
-                            <div class="col">
-                                <select name="c_update_status" id="c_update_status" class="form-control" required>
-                                    <option value="0">กำลังรักษา</option>
-                                    <option value="1">รักษาหายแล้ว</option>
-                                    <option value="3">เสียชีวิต</option>
-                                </select>
-                            </div>
+            <?php if ($rviewcase['c_status'] != 2) {
+                if ($rviewcase['c_ref_docid'] == $smid) {
 
-                            <div class="col-auto">
-                                <button class="btn btn-primary" type="submit">บันทึก</button>
-                            </div>
+            ?>
+                    <div class="card">
+                        <div class="card-body border-info border">
+                            <h5>แก้ไขสถานะเคสผู้ป่วย</h5>
+                            <form action="" id="updatecase">
+                                <input type="hidden" name="c_update_id" id="c_update_id" value="<?= $rviewcase['c_id']; ?>" class="form-control" readonly required>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <select name="c_update_status" id="c_update_status" class="form-control" required>
+                                            <option value="0">กำลังรักษา</option>
+                                            <option value="1">รักษาหายแล้ว</option>
+                                            <option value="3">เสียชีวิต</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-auto">
+                                        <button class="btn btn-primary" type="submit">บันทึก</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                    </form>
-                </div>
-            </div>
-            <?php } ?>
+                    </div>
+            <?php }
+            } ?>
 
         </div>
     </div>
