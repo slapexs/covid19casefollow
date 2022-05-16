@@ -75,7 +75,7 @@
                                         <td><?= $rfindcase['c_cardid']; ?></td>
                                         <td class="text-center"><?= $rfindcase['c_village_num']; ?></td>
                                         <td class="text-center"><?= $rfindcase['c_phone']; ?></td>
-
+                                        <td class="text-center"><?= $casestatus[$rfindcase['c_status']]; ?></td>
                                         <td class="text-center">
                                             <a href="./?page=viewcase&cid=<?= base64_encode($rfindcase['c_id']); ?>" class="btn btn-sm btn-info">ดูข้อมูล</a>
                                         </td>
