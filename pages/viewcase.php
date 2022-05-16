@@ -66,6 +66,7 @@
             } ?>
     </div>
 
+    <div class="col-md-12">
     <div class="bg-light rounded p-3">
         <!-- ข้อมูลทั่วไป -->
         <p class="text-primary">ข้อมูลทั่วไป</p>
@@ -103,6 +104,7 @@
             </div>
 
         </div>
+    </div>
     </div>
 
 </div>
