@@ -2,7 +2,7 @@
 // localhost
 $hostname = "localhost";
 $hostusername = "root";
-$hostpassword = "root";
+$hostpassword = "";
 $dbname = "covid19casefollow";
 
 try {

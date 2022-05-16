@@ -55,8 +55,8 @@ $qallcase->execute();
     <table class="table_print mt-2">
 
         <thead>
-            <tr style="align-items:center;">
-                <th>รหัสเคส</th>
+            <tr>
+                <th>ลำดับ</th>
                 <th>ผู้ป่วย</th>
                 <th>เลขประจำตัวระชาชน</th>
                 <th>หมู่ที่</th>
@@ -73,7 +73,10 @@ $qallcase->execute();
             </tr>
         </thead>
         <tbody>
-        <?php while ($rallcase = $qallcase->fetch()) {
+        <?php 
+        $couter = 0;
+        while ($rallcase = $qallcase->fetch()) {
+            $couter++;
             $docid = $rallcase['c_ref_docid'];
             $doc = "SELECT * FROM `members` WHERE `m_id` = :docid";
             $qdoc = $conn->prepare($doc);
@@ -99,8 +102,8 @@ $qallcase->execute();
             $cardid .= $rallcase['c_cardid'][12];
 
         ?>
-            <tr style="align-items:center;">
-                <td><?= $rallcase['c_id']; ?></td>
+            <tr>
+                <td class="text-center"><?= $couter; ?></td>
                 <td><?= $rallcase['c_fname'] . ' ' . $rallcase['c_lname']; ?></td>
                 <td><?= $cardid; ?></td>
                 <td class="text-center"><?= $rallcase['c_village_num']; ?></td>
@@ -126,6 +129,9 @@ $qallcase->execute();
     ob_end_flush();
     $stylesheet = file_get_contents('print_style.css');
 
+    // $mpdf->WriteHTML($stylesheet, \Mpdf\HTMLParserMode::HEADER_CSS);
+    // $mpdf->WriteHTML($print, \Mpdf\HTMLParserMode::HTML_BODY);
+    $mpdf->AddPage('L'); // เพิ่มหน้าใหม่แบบแนวนอน
     $mpdf->WriteHTML($stylesheet, \Mpdf\HTMLParserMode::HEADER_CSS);
     $mpdf->WriteHTML($print, \Mpdf\HTMLParserMode::HTML_BODY);
     $mpdf->Output('download/' . $filename);

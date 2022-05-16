@@ -62,7 +62,7 @@ $rdoc = $qdoc->fetch();
 
     <table class="table_print mt-2">
         <thead>
-            <tr style="align-items:center;">
+            <tr>
                 <th>รหัสเคส</th>
                 <th>ผู้ป่วย</th>
                 <th>เลขประจำตัวระชาชน</th>
@@ -79,8 +79,10 @@ $rdoc = $qdoc->fetch();
             </tr>
         </thead>
         <tbody>
-            <?php while ($rmycase = $qmycase->fetch()) {
-
+            <?php
+            $couter = 0;
+            while ($rmycase = $qmycase->fetch()) {
+$couter++;
                 $cardid = "";
                 $cardid .= $rmycase['c_cardid'][0];
                 $cardid .= "-";
@@ -99,8 +101,8 @@ $rdoc = $qdoc->fetch();
                 $cardid .= $rmycase['c_cardid'][12];
 
             ?>
-                <tr style="align-items:center;">
-                    <td><?= $rmycase['c_id']; ?></td>
+                <tr>
+                    <td class="text-center"><?= $couter; ?></td>
                     <td><?= $rmycase['c_fname'] . ' ' . $rmycase['c_lname']; ?></td>
                     <td><?= $cardid; ?></td>
                     <td class="text-center"><?= $rmycase['c_village_num']; ?></td>
@@ -125,7 +127,7 @@ $rdoc = $qdoc->fetch();
     $print = ob_get_contents();
     ob_end_flush();
     $stylesheet = file_get_contents('print_style.css');
-
+    $mpdf->AddPage('L'); // เพิ่มหน้าใหม่แบบแนวนอน
     $mpdf->WriteHTML($stylesheet, \Mpdf\HTMLParserMode::HEADER_CSS);
     $mpdf->WriteHTML($print, \Mpdf\HTMLParserMode::HTML_BODY);
     $mpdf->Output('download/' . $filename);
